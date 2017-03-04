@@ -8,9 +8,11 @@
  :dependencies '[[org.clojure/clojurescript "1.9.473" :scope "test"]
                  [org.clojure/clojure "1.8.0" :scope "test"]
                  [adzerk/boot-cljs "1.7.228-2" :scope "test"]
+                 [adzerk/bootlaces "0.1.13" :scope "test"]
                  [cljsjs/iconv-lite "0.4.15-0"]])
 
-(require '[adzerk.boot-cljs :refer [cljs]])
+(require '[adzerk.boot-cljs :refer [cljs]]
+         '[adzerk.bootlaces :refer [push-release]])
 
 (task-options!
  pom {:project +project+
@@ -28,3 +30,10 @@
     (jar)
     (install)
     (target)))
+
+(deftask deploy []
+  (set-env!
+    :repositories #(conj % ["clojars" {:url "https://clojars.org/repo/"}]))
+  (comp
+    (build-jar)
+    (push-release)))
