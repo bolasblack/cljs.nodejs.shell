@@ -6,7 +6,7 @@ Read [https://clojuredocs.org/clojure.java.shell](https://clojuredocs.org/clojur
 
 ## Difference between cljs.nodejs.shell, [clojure.java.shell](https://clojuredocs.org/clojure.java.shell), [planck.shell](http://planck-repl.org/planck-namespaces.html)
 
- | cljs.nodejs.shell | clojure.java.shell | planck.shell
+&nbsp;|cljs.nodejs.shell | clojure.java.shell | planck.shell
 -----|-----|-----|-----
 `:in` in option | `String` or `js/Buffer` | [any legal input source for clojure.java.io/copy](https://github.com/clojure/clojure/blob/fe0cfc71e6ec7b546066188c555b01dae0e368e8/src/clj/clojure/java/shell.clj#L84) | `String` or [file url scheme](https://github.com/mfikes/planck/blob/f16c065ca09e24c9d73191805c402985137e83a9/planck-cljs/src/planck/shell.cljs#L57)
 `:out` in result | `String` or `js/Buffer` | `byte[]` or `String` | `String`
