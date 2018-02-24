@@ -1,3 +1,6 @@
-target
+node_modules
+.cpcache
 .lumo_cache
+.shadow-cljs
+lib
 *.log

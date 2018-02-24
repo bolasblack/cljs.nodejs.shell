@@ -1,10 +1,8 @@
 (ns cljs.nodejs.shell
   (:require-macros [cljs.nodejs.shell])
   (:require [cljs.nodejs :as nodejs]
-            cljsjs.iconv-lite))
-
-(def ^:private child-process (nodejs/require "child_process"))
-(def ^:private iconv js/iconv)
+            ["child_process" :as child-process]
+            ["iconv-lite" :as iconv]))
 
 (def ^:dynamic *sh-dir* nil)
 (def ^:dynamic *sh-env* nil)

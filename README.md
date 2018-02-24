@@ -1,8 +1,6 @@
 # cljs.nodejs.shell
 
-[![cljs.nodejs.shell](https://img.shields.io/clojars/v/org.clojars.c4605/cljs.nodejs.shell.svg)](https://clojars.org/org.clojars.c4605/cljs.nodejs.shell)
-
-Read [https://clojuredocs.org/clojure.java.shell](https://clojuredocs.org/clojure.java.shell) and [doc-string](https://github.com/bolasblack/cljs.nodejs.shell/blob/master/src/cljs/nodejs/shell.cljs#L13) for usage.
+Read [https://clojuredocs.org/clojure.java.shell](https://clojuredocs.org/clojure.java.shell) and [doc-string](https://github.com/bolasblack/cljs.nodejs.shell/blob/master/src/cljs/nodejs/shell.cljs#L11) for usage.
 
 ## Difference between cljs.nodejs.shell, [clojure.java.shell](https://clojuredocs.org/clojure.java.shell), [planck.shell](http://planck-repl.org/planck-namespaces.html)
 
@@ -12,8 +10,10 @@ Read [https://clojuredocs.org/clojure.java.shell](https://clojuredocs.org/clojur
 `:out` in result | `String` or `js/Buffer` | `byte[]` or `String` | `String`
 spawn command asynchronously | no | no | [`sh-async`](https://github.com/mfikes/planck/blob/f16c065ca09e24c9d73191805c402985137e83a9/planck-cljs/src/planck/shell.cljs#L80)
 
-## Leiningen/Boot
+## Install
 
-```
-[org.clojars.c4605/cljs.nodejs.shell "0.1.0"]
+```clojure
+;; deps.edn
+{:deps {cljs.nodejs.shell {:git/url "https://github.com/bolasblack/cljs.nodejs.shell"
+                           :sha "0.1.1"}}}
 ```

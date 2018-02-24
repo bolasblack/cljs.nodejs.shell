@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "watch:src": "shadow-cljs watch main",
+    "watch:test": "shadow-cljs watch main-test",
+    "test": "node lib/main-test.js"
+  },
+  "devDependencies": {
+    "shadow-cljs": "^2.1.25"
+  },
+  "dependencies": {
+    "iconv-lite": "0.4.19"
+  }
+}
