@@ -15,5 +15,5 @@ spawn command asynchronously | no | no | [`sh-async`](https://github.com/mfikes/
 ```clojure
 ;; deps.edn
 {:deps {cljs.nodejs.shell {:git/url "https://github.com/bolasblack/cljs.nodejs.shell"
-                           :sha "0.1.1"}}}
+                           :tag "0.1.1"}}}
 ```
