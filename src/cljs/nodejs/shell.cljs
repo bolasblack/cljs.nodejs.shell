@@ -1,7 +1,6 @@
 (ns cljs.nodejs.shell
   (:require-macros [cljs.nodejs.shell])
-  (:require [cljs.nodejs :as nodejs]
-            ["child_process" :as child-process]
+  (:require ["child_process" :as child-process]
             ["iconv-lite" :as iconv]))
 
 (def ^:dynamic *sh-dir* nil)
@@ -40,9 +39,9 @@
                                  (first cmd)
                                  (clj->js (or (next cmd) []))
                                  (clj->js spawn-opts))
-        exit (.-status spawn-result)
-        raw-out (.-stdout spawn-result)
-        raw-err (.-stderr spawn-result)
+        exit spawn-result.status
+        raw-out spawn-result.stdout
+        raw-err spawn-result.stderr
         decoded-out (if (and raw-out out-enc) (.decode iconv raw-out out-enc) raw-out)
         decoded-err (if (and raw-err out-enc) (.decode iconv raw-err out-enc) raw-err)]
     {:exit exit :out decoded-out :err decoded-err}))

@@ -1,10 +1,8 @@
 (ns cljs.nodejs.shell-test
-  (:require [clojure.test :refer [deftest are is run-tests]]
+  (:require [clojure.test :refer [deftest are is]]
             [clojure.string :as s]
             [cljs.nodejs :as nodejs]
             [cljs.nodejs.shell :as sh :include-macros true]))
-
-(nodejs/enable-util-print!)
 
 (deftest shell
   (let [result (sh/sh "echo" "hello")]
@@ -32,11 +30,3 @@
 (deftest with-sh-env-test
   (is (= "FOO=BAR\n" (.toString (:out (sh/with-sh-env {"FOO" "BAR"}
                                         (sh/sh "env")))))))
-
-(defn -main [& args]
-  (try
-    (run-tests)
-    (catch js/Error e
-      (println (.-stack e)))))
-
-(set! *main-cli-fn* -main)

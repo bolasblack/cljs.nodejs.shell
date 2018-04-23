@@ -5,5 +5,5 @@
                  :output-dir "lib"
                  :compiler-options {:source-map true}}
           :main-test {:target :node-test
-                      :output-to "lib/main-test.js"
-                      :ns-regexp "-test$"}}}
+                      :autorun true
+                      :output-to "lib/main-test.js"}}}
