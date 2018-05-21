@@ -109,32 +109,32 @@
   (let [{:keys [bin args options origin-options cb]} (deserialize-opts args)
         process (child-process/spawn bin (clj->js args) (clj->js options))
         empty-buf (js/Buffer.alloc 0)
-        spawn-results (volatile! {:stdout empty-buf :stderr empty-buf :finished? false})
+        spawn-results (volatile! {:finished? false
+                                  :stdout empty-buf
+                                  :stderr empty-buf})
         stash-result (fn [key]
                        (fn [new-buf]
                          (vswap!
                           spawn-results
                           (fn [result]
-                            (update
-                             result
-                             key
-                             (fn [curr-buf]
-                               (js/Buffer.concat
-                                #js [curr-buf new-buf]
-                                (+ curr-buf.length new-buf.length))))))))]
+                            (update result key (fn [curr-buf]
+                                                 (js/Buffer.concat
+                                                  #js [curr-buf new-buf]
+                                                  (+ curr-buf.length new-buf.length))))))))
+        stdout-callback (stash-result :stdout)
+        stderr-callback (stash-result :stderr)]
 
-    (.. process -stdout (on "data" (stash-result :stdout)))
+    (.. process -stdout (on "data" stdout-callback))
+    (.. process -stderr (on "data" stderr-callback))
 
-    (.. process -stderr (on "data" (stash-result :stderr)))
-
-    (.on
+    (.once
      process
      "error"
      (fn [err]
        (when-not (:finished? @spawn-results)
-         (vswap!
-          spawn-results
-          #(assoc % :finished? true))
+         (vswap! spawn-results #(assoc % :finished? true))
+         (.. process -stdout (removeListener "data" stdout-callback))
+         (.. process -stderr (removeListener "data" stderr-callback))
          (cb (deserialize-spawn-result
               {:exit nil
                :signal nil
@@ -143,14 +143,14 @@
                :stderr (:stderr @spawn-results)}
               origin-options)))))
 
-    (.on
+    (.once
      process
      "exit"
      (fn [code signal]
        (when-not (:finished? @spawn-results)
-         (vswap!
-          spawn-results
-          #(assoc % :finished? true))
+         (vswap! spawn-results #(assoc % :finished? true))
+         (.. process -stdout (removeListener "data" stdout-callback))
+         (.. process -stderr (removeListener "data" stderr-callback))
          (cb (deserialize-spawn-result
               {:exit code
                :signal signal

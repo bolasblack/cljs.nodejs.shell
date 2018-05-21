@@ -1,6 +1,6 @@
 # cljs.nodejs.shell
 
-Read [https://clojuredocs.org/clojure.java.shell](https://clojuredocs.org/clojure.java.shell) and [doc-string](https://github.com/bolasblack/cljs.nodejs.shell/blob/master/src/cljs/nodejs/shell.cljs#L11) for usage.
+Read [https://clojuredocs.org/clojure.java.shell](https://clojuredocs.org/clojure.java.shell) and [doc-string](https://github.com/bolasblack/cljs.nodejs.shell/blob/master/src/cljs/nodejs/shell.cljs) for usage.
 
 ## Difference between cljs.nodejs.shell, [clojure.java.shell](https://clojuredocs.org/clojure.java.shell), [planck.shell](http://planck-repl.org/planck-namespaces.html)
 
@@ -15,5 +15,5 @@ spawn command asynchronously | no | no | [`sh-async`](https://github.com/mfikes/
 ```clojure
 ;; deps.edn
 {:deps {cljs.nodejs.shell {:git/url "https://github.com/bolasblack/cljs.nodejs.shell"
-                           :tag "0.2.0"}}}
+                           :tag "0.2.1"}}}
 ```
