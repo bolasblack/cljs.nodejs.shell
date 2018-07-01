@@ -4,7 +4,7 @@
     "test": "node lib/main-test.js"
   },
   "devDependencies": {
-    "shadow-cljs": "^2.2.7"
+    "shadow-cljs": "^2.4.12"
   },
   "dependencies": {
     "iconv-lite": "0.4.19"

@@ -1,3 +1,5 @@
 {:paths ["src"]
+ :deps
+ {org.clojure/test.check {:mvn/version "0.10.0-alpha3"}}
  :aliases
  {:test {:extra-paths ["test"]}}}

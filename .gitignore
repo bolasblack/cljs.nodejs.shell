@@ -2,5 +2,6 @@ node_modules
 .cpcache
 .lumo_cache
 .shadow-cljs
+.nrepl-*
 lib
 *.log
