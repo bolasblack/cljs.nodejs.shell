@@ -71,7 +71,7 @@
         (done))))))
 
 (deftest sh-with-sh-env-test
-  (is (thrown-with-msg? js/Error #"cljs\.spec\.alpha"
+  (is (thrown-with-msg? js/Error #"spec"
                         (sh/with-sh-env {"FOO" {}}
                           (sh/sh "env"))))
   (is (= "FOO=BAR\n" (.toString (:out (sh/with-sh-env {"FOO" "BAR"}
@@ -79,7 +79,7 @@
 (deftest sh-async-with-sh-env-test
   (async
    done
-   (is (thrown-with-msg? js/Error #"cljs\.spec\.alpha"
+   (is (thrown-with-msg? js/Error #"spec"
                          (sh/with-sh-env {"FOO" {}}
                            (sh/sh-async
                             "env"
